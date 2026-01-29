@@ -617,6 +617,16 @@ section {
     border-top: 1px solid #34495e;
 }
 
+.footer-bottom .developer-credit {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #95a5a6;
+}
+
+.footer-bottom .developer-credit strong {
+    color: #bdc3c7;
+}
+
 /* --- WhatsApp Float Button --- */
 .whatsapp-float {
     position: fixed;
