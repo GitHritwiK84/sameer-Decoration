@@ -312,7 +312,20 @@
         <div class="container contact-container">
           <div class="contact-form-container animate-on-scroll">
             <h3>Send Us a Message</h3>
-            <form id="contact-form">
+            <form
+              id="contact-form"
+              action="https://formsubmit.co/hritwikdeo8413@gmail.com"
+              method="POST"
+            >
+              <!-- Hidden Settings -->
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Website Query - Sameer Decoration"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+
               <div class="form-group">
                 <input
                   type="text"
@@ -321,6 +334,7 @@
                   required
                 />
               </div>
+
               <div class="form-group">
                 <input
                   type="email"
@@ -329,6 +343,7 @@
                   required
                 />
               </div>
+
               <div class="form-group">
                 <input
                   type="tel"
@@ -337,6 +352,7 @@
                   required
                 />
               </div>
+
               <div class="form-group">
                 <textarea
                   name="message"
@@ -345,6 +361,7 @@
                   required
                 ></textarea>
               </div>
+
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -443,5 +460,32 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.querySelector('input[name="name"]').value;
+          const email = document.querySelector('input[name="email"]').value;
+          const phone = document.querySelector('input[name="phone"]').value;
+          const message = document.querySelector(
+            'textarea[name="message"]',
+          ).value;
+
+          const whatsappNumber = "919113303790"; // Your WhatsApp number (with country code)
+
+          const text =
+            `New Query from Website%0A%0A` +
+            `Name: ${name}%0A` +
+            `Email: ${email}%0A` +
+            `Phone: ${phone}%0A%0A` +
+            `Message:%0A${message}`;
+
+          const whatsappURL = `https://wa.me/${919113303790}?text=${text}`;
+
+          window.open(whatsappURL, "_blank");
+        });
+    </script>
   </body>
 </html>
