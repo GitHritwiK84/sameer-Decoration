@@ -155,16 +155,36 @@ document.addEventListener("DOMContentLoaded", () => {
         return isValid;
     }
 
-    // Validate on submit
+    // Submit: validate then open WhatsApp with pre-filled message (9113303790)
+    const whatsappNumber = '919113303790';
     contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
         if (!validateForm()) {
-            e.preventDefault();
             const firstError = contactForm.querySelector('.form-group.error');
             if (firstError) {
                 const input = firstError.querySelector('input, textarea');
                 if (input) input.focus();
             }
+            return;
         }
+        const name = contactForm.querySelector('[name="name"]').value.trim();
+        const email = contactForm.querySelector('[name="email"]').value.trim();
+        const phone = contactForm.querySelector('[name="phone"]').value.trim();
+        const message = contactForm.querySelector('[name="message"]').value.trim();
+        const text = [
+            'New Query - Sameer Decoration',
+            '',
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Phone: ${phone}`,
+            '',
+            'Message:',
+            message
+        ].join('\n');
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        window.open(whatsappURL, '_blank');
+        contactForm.reset();
+        formGroups.forEach(group => clearFieldError(group));
     });
 
     // Clear error on input (real-time feedback)
