@@ -7,11 +7,11 @@
 
     <meta
       name="description"
-      content="Sameer Decoration offers professional decoration services in Patna, Bihar for weddings, birthdays, corporate events, and more. Specializing in flower, stage, and light decoration."
+      content="Sameer Decoration offers professional decoration services in Maithon(Dhanbad), Jharkhand for weddings, birthdays, corporate events, and more. Specializing in flower, stage, and light decoration."
     />
     <meta
       name="keywords"
-      content="wedding decoration, event decoration, flower decoration, stage setup, birthday party, car decoration, Patna, Sameer Decoration"
+      content="wedding decoration, event decoration, flower decoration, stage setup, birthday party, car decoration, Maithon(Dhanbad), Sameer Decoration"
     />
     <meta name="author" content="Sameer Decoration" />
 
@@ -161,10 +161,10 @@
               <h2>About Sameer Decoration</h2>
             </div>
             <p>
-              With over a decade of experience in the heart of Patna, Sameer
-              Decoration has become synonymous with elegance and creativity. We
-              are a team of passionate designers and decorators dedicated to
-              bringing your dream events to life.
+              With over a decade of experience in the heart of Maithon(Dhanbad),
+              Sameer Decoration has become synonymous with elegance and
+              creativity. We are a team of passionate designers and decorators
+              dedicated to bringing your dream events to life.
             </p>
             <h3>Our Mission</h3>
             <p>
@@ -174,9 +174,9 @@
             </p>
             <h3>Our Vision</h3>
             <p>
-              To be the leading event decoration company in Bihar, known for our
-              innovative designs and unwavering commitment to client
-              satisfaction.
+              To be the leading event decoration company in Maithon(Dhanbad),
+              known for our innovative designs and unwavering commitment to
+              client satisfaction.
             </p>
           </div>
           <div class="about-image animate-on-scroll"></div>
@@ -305,7 +305,6 @@
             />
           </div>
         </div>
-        S
       </section>
 
       <section id="contact">
@@ -314,10 +313,11 @@
             <h3>Send Us a Message</h3>
             <form
               id="contact-form"
-              action="https://formsubmit.co/hritwikdeo8413@gmail.com"
+              action="https://formsubmit.co/sameerdecoration@gmail.com"
               method="POST"
+              novalidate
             >
-              <!-- Hidden Settings -->
+              <!-- FormSubmit.co hidden settings -->
               <input
                 type="hidden"
                 name="_subject"
@@ -326,43 +326,60 @@
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
 
-              <div class="form-group">
+              <div class="form-group" data-field="name">
+                <label for="contact-name">Your Name</label>
                 <input
                   type="text"
+                  id="contact-name"
                   name="name"
-                  placeholder="Your Name"
-                  required
+                  placeholder="Enter your name"
+                  minlength="2"
+                  maxlength="100"
+                  autocomplete="name"
                 />
+                <span class="form-error" role="alert"></span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" data-field="email">
+                <label for="contact-email">Your Email</label>
                 <input
                   type="email"
+                  id="contact-email"
                   name="email"
-                  placeholder="Your Email"
-                  required
+                  placeholder="Enter your email"
+                  autocomplete="email"
                 />
+                <span class="form-error" role="alert"></span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" data-field="phone">
+                <label for="contact-phone">Your Phone Number</label>
                 <input
                   type="tel"
+                  id="contact-phone"
                   name="phone"
-                  placeholder="Your Phone Number"
-                  required
+                  placeholder="e.g. 9876543210 or +91 9876543210"
+                  minlength="10"
+                  maxlength="15"
+                  autocomplete="tel"
                 />
+                <span class="form-error" role="alert"></span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" data-field="message">
+                <label for="contact-message">Your Message</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows="5"
-                  placeholder="Your Message"
-                  required
+                  placeholder="Tell us about your event..."
+                  minlength="10"
+                  maxlength="2000"
                 ></textarea>
+                <span class="form-error" role="alert"></span>
               </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
           </div>
           <div class="contact-details-container animate-on-scroll">
@@ -374,12 +391,12 @@
             <ul class="contact-details">
               <li>
                 <i class="fas fa-phone"></i
-                ><a href="tel:+917992301854">+91 7992301854</a>
+                ><a href="tel:+919113303790">+91 9113303790</a>
               </li>
               <li>
                 <i class="fab fa-whatsapp"></i
-                ><a href="https://wa.me/7992301854" target="_blank"
-                  >+91 9876543210</a
+                ><a href="https://wa.me/9113303790" target="_blank"
+                  >+91 9113303790</a
                 >
               </li>
               <li>
@@ -396,8 +413,6 @@
             <div class="map-container">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2086.9616771728347!2d86.77282649366133!3d23.78671159782145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6dd53ec3bb8a3%3A0xc61d16e4abb4d5c7!2sPuyaladih%20Kali%20Mandir!5e0!3m2!1sen!2sin!4v1769705896900!5m2!1sen!2sin"
-                width="800"
-                height="250"
                 style="border: 0"
                 allowfullscreen=""
                 loading="lazy"
@@ -460,32 +475,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-      document
-        .getElementById("contact-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const name = document.querySelector('input[name="name"]').value;
-          const email = document.querySelector('input[name="email"]').value;
-          const phone = document.querySelector('input[name="phone"]').value;
-          const message = document.querySelector(
-            'textarea[name="message"]',
-          ).value;
-
-          const whatsappNumber = "919113303790"; // Your WhatsApp number (with country code)
-
-          const text =
-            `New Query from Website%0A%0A` +
-            `Name: ${name}%0A` +
-            `Email: ${email}%0A` +
-            `Phone: ${phone}%0A%0A` +
-            `Message:%0A${message}`;
-
-          const whatsappURL = `https://wa.me/${919113303790}?text=${text}`;
-
-          window.open(whatsappURL, "_blank");
-        });
-    </script>
   </body>
 </html>

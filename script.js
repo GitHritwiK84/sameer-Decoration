@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
     });
 
     // Close menu when a link is clicked
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
         });
     });
 
@@ -86,14 +88,92 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.animate-on-scroll').forEach(element => {
         observer.observe(element);
     });
-    
-    // --- Contact Form Submission (Simple Example) ---
+
+    // --- Contact Form Validation ---
     const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
+    const formGroups = contactForm.querySelectorAll('.form-group[data-field]');
+
+    const validators = {
+        name: (value) => {
+            value = value.trim();
+            if (!value) return 'Please enter your name.';
+            if (value.length < 2) return 'Name must be at least 2 characters.';
+            return '';
+        },
+        email: (value) => {
+            value = value.trim();
+            if (!value) return 'Please enter your email.';
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) return 'Please enter a valid email address.';
+            return '';
+        },
+        phone: (value) => {
+            const digits = value.replace(/\D/g, '');
+            if (digits.length === 0) return 'Please enter your phone number.';
+            if (digits.length < 10) return 'Please enter a valid 10-digit phone number.';
+            if (digits.length > 15) return 'Phone number is too long.';
+            return '';
+        },
+        message: (value) => {
+            value = value.trim();
+            if (!value) return 'Please enter your message.';
+            if (value.length < 10) return 'Message must be at least 10 characters.';
+            return '';
+        }
+    };
+
+    function showFieldError(group, message) {
+        group.classList.add('error');
+        const errorEl = group.querySelector('.form-error');
+        if (errorEl) errorEl.textContent = message;
+    }
+
+    function clearFieldError(group) {
+        group.classList.remove('error');
+        const errorEl = group.querySelector('.form-error');
+        if (errorEl) errorEl.textContent = '';
+    }
+
+    function validateField(group) {
+        const field = group.dataset.field;
+        const input = group.querySelector('input, textarea');
+        const value = input ? input.value : '';
+        const error = validators[field](value);
+        if (error) {
+            showFieldError(group, error);
+            return false;
+        }
+        clearFieldError(group);
+        return true;
+    }
+
+    function validateForm() {
+        let isValid = true;
+        formGroups.forEach(group => {
+            if (!validateField(group)) isValid = false;
+        });
+        return isValid;
+    }
+
+    // Validate on submit
+    contactForm.addEventListener('submit', (e) => {
+        if (!validateForm()) {
+            e.preventDefault();
+            const firstError = contactForm.querySelector('.form-group.error');
+            if (firstError) {
+                const input = firstError.querySelector('input, textarea');
+                if (input) input.focus();
+            }
+        }
     });
 
+    // Clear error on input (real-time feedback)
+    formGroups.forEach(group => {
+        const input = group.querySelector('input, textarea');
+        if (input) {
+            input.addEventListener('input', () => clearFieldError(group));
+            input.addEventListener('blur', () => validateField(group));
+        }
+    });
 });
 
