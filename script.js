@@ -196,3 +196,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+let heroIndex = 0;
+
+setInterval(() => {
+  heroIndex = (heroIndex + 1) % heroTexts.length;
+  document.getElementById("hero-text").innerText = heroTexts[heroIndex];
+}, 2500); // 2500ms = 2.5 seconds
+
+const snowContainer = document.getElementById("snow-container");
+const heroText = document.getElementById("hero-text");
+
+// split text into spans
+const words = heroText.innerText.split(" ");
+heroText.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(" ");
+
+const flowers = ["🌸", "🌺", "🌼", "💐"];
+
+function createFlower() {
+  const flower = document.createElement("div");
+  flower.classList.add("snowflake");
+  flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.animationDuration = Math.random() * 5 + 5 + "s";
+  flower.style.fontSize = Math.random() * 15 + 15 + "px";
+
+  snowContainer.appendChild(flower);
+
+  const checkCollision = setInterval(() => {
+    const flowerRect = flower.getBoundingClientRect();
+    const wordSpans = document.querySelectorAll(".word");
+
+    wordSpans.forEach(word => {
+      const wordRect = word.getBoundingClientRect();
+
+      if (
+        flowerRect.top < wordRect.bottom &&
+        flowerRect.bottom > wordRect.top &&
+        flowerRect.left < wordRect.right &&
+        flowerRect.right > wordRect.left
+      ) {
+        word.classList.add("word-bounce");
+        setTimeout(() => word.classList.remove("word-bounce"), 400);
+
+        flower.remove();
+        clearInterval(checkCollision);
+      }
+    });
+  }, 50);
+
+  setTimeout(() => {
+    flower.remove();
+    clearInterval(checkCollision);
+  }, 10000);
+}
+
+setInterval(createFlower, 300);

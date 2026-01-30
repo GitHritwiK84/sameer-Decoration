@@ -1052,3 +1052,46 @@ section {
 .call-float {
   animation: ring 1.5s infinite, pulseGlow 2s infinite, bounce 2s infinite;
 }
+
+#snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.snowflake {
+  position: absolute;
+  top: -50px;
+  font-size: 20px;
+  animation: fall linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+.word {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+@keyframes wordBounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.4); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.word-bounce {
+  animation: wordBounce 0.4s ease;
+}
+
+
