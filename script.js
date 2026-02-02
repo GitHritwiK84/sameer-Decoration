@@ -254,3 +254,29 @@ function createFlower() {
 }
 
 setInterval(createFlower, 300);
+
+const logo = document.querySelector(".animated-logo");
+
+const fonts = [
+  "'Playfair Display', serif",
+  "'Poppins', sans-serif",
+  "'Georgia', serif",
+  "'Trebuchet MS', sans-serif",
+  "'Courier New', monospace"
+];
+
+const colors = [
+  "#ff4d6d",
+  "#ffb703",
+  "#06d6a0",
+  "#4dabf7",
+  "#c77dff"
+];
+
+let index = 0;
+
+setInterval(() => {
+  logo.style.fontFamily = fonts[index % fonts.length];
+  logo.style.color = colors[index % colors.length];
+  index++;
+}, 1000);

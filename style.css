@@ -1095,3 +1095,17 @@ section {
 }
 
 
+.animated-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: inline-block;
+  animation: logoBounce 1s infinite ease-in-out;
+  transition: color 0.5s ease, font-family 0.5s ease;
+}
+
+/* Bounce animation */
+@keyframes logoBounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
